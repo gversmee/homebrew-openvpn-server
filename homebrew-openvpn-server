@@ -1,8 +1,9 @@
 class OpenvpnServer < Formula
   desc ""
   homepage "https://github.com/gversmee/openvpn-server"
-  url "https://github.com/gversmee/openvpn-server/archive/v0.91.tar.gz"
-  sha256 "d801d6ef699ac0186cfdc6c7b1c611dbd5cab8986f202e50f954fd8005e989db"
+  url "https://github.com/gversmee/openvpn-server/archive/v0.92.tar.gz"
+  sha256 "4584e45cfc17c1481ea15c1bf138dfcfb7cceaba51ca68ac780630895ff6166a"
+  # depends_on "cmake" => :build
 
   def install
     bin.install "vpn-server-start"
