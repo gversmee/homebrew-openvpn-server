@@ -1,13 +1,31 @@
 class OpenvpnServer < Formula
   desc ""
-  homepage "https://github.com/gversmee/openvpn-server"
-  url "https://github.com/gversmee/openvpn-server/archive/v0.91.tar.gz"
+  homepage ""
+  url "https://github.com/gversmee/openvpn-server/archive/v0.92.tar.gz"
   sha256 "4584e45cfc17c1481ea15c1bf138dfcfb7cceaba51ca68ac780630895ff6166a"
+
   # depends_on "cmake" => :build
 
   def install
-    bin.install "vpn-server-start"
-    bin.install "vpn-server-stop"
+    # ENV.deparallelize  # if your formula fails when building in parallel
+    # Remove unrecognized options if warned by configure
+    system "./configure", "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}"
+    # system "cmake", ".", *std_cmake_args
   end
 
+  test do
+    # `test do` will create, run in and delete a temporary directory.
+    #
+    # This test will fail and we won't accept that! For Homebrew/homebrew-core
+    # this will need to be a test that verifies the functionality of the
+    # software. Run the test with `brew test openvpn-server`. Options passed
+    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
+    #
+    # The installed folder is not in the path, so use the entire path to any
+    # executables being tested: `system "#{bin}/program", "do", "something"`.
+    system "false"
+  end
 end
